@@ -19,4 +19,3 @@ def canUnlockAll(boxes):
             notOpen = notOpen.union(boxes[nowBox])
             openBoxes.add(nowBox)
     return len(boxes) == len(openBoxes)
-        
