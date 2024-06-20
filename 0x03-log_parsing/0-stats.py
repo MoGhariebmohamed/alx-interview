@@ -5,7 +5,7 @@ read from st.in line by line till 10 lines
 
 import sys
 
-codes_dict = {'200':0, '301': 0, '400': 0, '401': 0, '403': 0,
+codes_dict = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0,
               '404': 0, '405': 0, '500': 0}
 
 file_size = 0
@@ -24,7 +24,7 @@ try:
 
             file_size += size
             counter += 1
-        
+
         if counter == 10:
             counter = 0
             print('size: {}'.format(file_size))
