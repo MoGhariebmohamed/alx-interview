@@ -22,12 +22,12 @@ try:
             if code in codes_dict.key():
                 codes_dict[code] += 1
 
-            file_size += size
+            size =+ file_size
             counter += 1
 
         if counter == 10:
             counter = 0
-            print('size: {}'.format(file_size))
+            print('File size: {}'.format(file_size))
             for key, value in sorted(codes_dict.items()):
                 if value != 0:
                     print('{}: {}'.format(key, value))
