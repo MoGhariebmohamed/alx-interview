@@ -19,7 +19,7 @@ try:
             code = lines[-2]
             size = int(lines[-1])
 
-            if code in codes_dict.key():
+            if code in codes_dict.keys():
                 codes_dict[code] += 1
 
             size += file_size
