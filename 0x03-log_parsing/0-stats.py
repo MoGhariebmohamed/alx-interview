@@ -13,7 +13,7 @@ counter = 0
 
 try:
     for line in sys.stdin:
-        lines = line.spilt(" ")
+        lines = line.split(" ")
 
         if (len(lines) > 4):
             code = lines[-2]
