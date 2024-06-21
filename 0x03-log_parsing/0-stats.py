@@ -22,7 +22,7 @@ try:
             if code in codes_dict.keys():
                 codes_dict[code] += 1
 
-            size += file_size
+            file_size += size
             counter += 1
 
         if counter == 10:
