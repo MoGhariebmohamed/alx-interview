@@ -14,7 +14,7 @@ def validUTF8(data):
         if ignore > 0:
             ignore -= 1
             continue
-        if type(data[x]) != int or data[x] < 0 or data[x] > 0x10ffff: 
+        if type(data[x]) != int or data[x] < 0 or data[x] > 0x10ffff:
             return False
         elif data[x] < 0x7f:
             ignore = 0
