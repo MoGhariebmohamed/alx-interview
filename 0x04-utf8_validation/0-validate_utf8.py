@@ -16,7 +16,7 @@ def validUTF8(data):
             continue
         if type(data[x]) != int or data[x] < 0 or data[x] > 0x10ffff:
             return False
-        elif data[x] < 0x7f:
+        elif data[x] <= 0x7f:
             ignore = 0
         elif data[x] & 0b11111000 == 0b11110000:
             utf_span = 4
