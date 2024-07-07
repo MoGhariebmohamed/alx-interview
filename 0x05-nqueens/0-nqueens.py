@@ -1,54 +1,52 @@
 #!/usr/bin/python3
 """
-N queens
+N queens puzzle is the challenge of placing N non-attacking queen
 """
-
 import sys
 
-if len(sys.argv) != 2:
-    print('Usage: nqueens N')
+
+if len(sys.argv) > 2 or len(sys.argv) < 2 or not sys.argv[1]:
+    print("Usage: nqueens N")
     exit(1)
 
-try:
-    n_q = int(sys.argv[1])
-except ValueError:
-    print('N must be a number')
+if not sys.argv[1].isdigit():
+    print("N must be a number")
     exit(1)
 
-if n_q < 4:
-    print('N must be at least 4')
+if int(sys.argv[1]) < 4:
+    print("N must be at least 4")
     exit(1)
 
-
-def solve_nqueens(n):
-    '''self descriptive'''
-    if n == 0:
-        return [[]]
-    inner_solution = solve_nqueens(n - 1)
-    return [solution + [(n, i + 1)]
-            for i in range(n_q)
-            for solution in inner_solution
-            if safe_queen((n, i + 1), solution)]
+countn = int(sys.argv[1])
 
 
-def attack_queen(square, queen):
-    '''self descriptive'''
-    (row1, col1) = square
-    (row2, col2) = queen
-    return (row1 == row2) or (col1 == col2) or\
-        abs(row1 - row2) == abs(col1 - col2)
+def queen_pos(countn, x=0, a=[], b=[], c=[]):
+    """
+    to get the possible positions
+    """
+    if x < countn:
+        for any in range(countn):
+            if any not in a and x + any not in b and x - any not in c:
+                yield from queen_pos(countn, x + 1, a +
+                                     [any], b + [x + any], c + [x - any])
+
+            else:
+                yield a
 
 
-def safe_queen(sqr, queens):
-    '''self descriptive'''
-    for queen in queens:
-        if attack_queen(sqr, queen):
-            return False
-    return True
+def solution(countn):
+    """
+    to solve the location of n
+    """
+    x = []
+    y = 0
+    for any in queen_pos(countn, 0):
+        for empty in any:
+            x.append([y, empty])
+            y += 1
+        print(x)
+        x = []
+        y = 0
 
 
-for answer in reversed(solve_nqueens(n_q)):
-    result = []
-    for p in [list(p) for p in answer]:
-        result.append([i - 1 for i in p])
-    print(result)
+solution(countn)
