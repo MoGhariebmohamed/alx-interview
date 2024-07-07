@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-N queens puzzle is the challenge of placing N non-attacking queen
-"""
+""" N queens """
 import sys
 
 
@@ -17,36 +15,30 @@ if int(sys.argv[1]) < 4:
     print("N must be at least 4")
     exit(1)
 
-countn = int(sys.argv[1])
+n = int(sys.argv[1])
 
 
-def queen_pos(countn, x=0, a=[], b=[], c=[]):
-    """
-    to get the possible positions
-    """
-    if x < countn:
-        for any in range(countn):
-            if any not in a and x + any not in b and x - any not in c:
-                yield from queen_pos(countn, x + 1, a +
-                                     [any], b + [x + any], c + [x - any])
-
-            else:
-                yield a
+def queens(n, i=0, a=[], b=[], c=[]):
+    """ find possible positions """
+    if i < n:
+        for j in range(n):
+            if j not in a and i + j not in b and i - j not in c:
+                yield from queens(n, i + 1, a + [j], b + [i + j], c + [i - j])
+    else:
+        yield a
 
 
-def solution(countn):
-    """
-    to solve the location of n
-    """
-    x = []
-    y = 0
-    for any in queen_pos(countn, 0):
-        for empty in any:
-            x.append([y, empty])
-            y += 1
-        print(x)
-        x = []
-        y = 0
+def solve(n):
+    """ solve """
+    k = []
+    i = 0
+    for solution in queens(n, 0):
+        for s in solution:
+            k.append([i, s])
+            i += 1
+        print(k)
+        k = []
+        i = 0
 
 
-solution(countn)
+solve(n)

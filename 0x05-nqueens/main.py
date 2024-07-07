@@ -1,12 +1,52 @@
 #!/usr/bin/python3
+"""
+N queens puzzle is the challenge of placing N non-attacking queen
+"""
+import sys
 
-canUnlockAll = __import__('0-lockboxes').canUnlockAll
 
-boxes = [[1], [2], [3], [4], []]
-print(canUnlockAll(boxes))
+if len(sys.argv) > 2 or len(sys.argv) < 2:
+    print("Usage: nqueens N")
+    exit(1)
 
-boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
-print(canUnlockAll(boxes))
+if not sys.argv[1].isdigit():
+    print("N must be a number")
+    exit(1)
 
-boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
-print(canUnlockAll(boxes))
+if int(sys.argv[1]) < 4:
+    print("N must be at least 4")
+    exit(1)
+
+countn = int(sys.argv[1])
+
+
+def queen_pos(countn, x=0, a=[], b=[], c=[]):
+    """
+    to get the possible positions
+    """
+    if x < countn:
+        for any in range(countn):
+            if any not in a and x + any not in b and x - any not in c:
+                yield from queen_pos(countn, x + 1, a +
+                                     [any], b + [x + any], c + [x - any])
+
+            else:
+                yield a
+
+
+def solution(countn):
+    """
+    to solve the location of n
+    """
+    x = []
+    y = 0
+    for any in queen_pos(countn, 0):
+        for empty in any:
+            x.append([y, empty])
+            y += 1
+        print(x)
+        x = []
+        y = 0
+
+
+solution(countn)
