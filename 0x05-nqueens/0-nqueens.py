@@ -5,7 +5,7 @@ N queens puzzle is the challenge of placing N non-attacking queen
 import sys
 
 
-if len(sys.argv) > 2 or len(sys.argv) < 2 or len(sys.argv) == None:
+if len(sys.argv) > 2 or len(sys.argv) < 2:
     print("Usage: nqueens N")
     exit(1)
 
