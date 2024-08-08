@@ -7,7 +7,7 @@ calculatee the  Prime Game
 
 def isWinner(x, nums):
     """
-    x is the number of rounds 
+    x is the number of rounds
     nums is an array of n
     """
     if x <= 0 or nums is None:
@@ -33,7 +33,7 @@ def isWinner(x, nums):
     if maria > ben:
         return "Maria"
     return None
- 
+
 
 def delMultiply(y, x):
     """
@@ -44,5 +44,3 @@ def delMultiply(y, x):
             y[i * x] = 0
         except (ValueError, IndexError):
             break
-
-print("Winner: {}".format(isWinner(5, [2, 5, 1, 4, 3])))
